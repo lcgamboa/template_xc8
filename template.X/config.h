@@ -100,8 +100,9 @@ void analogWrite(unsigned char pin, unsigned char value);
 #define Serial_read(x) serial_rx(x)
 #define Serial_write(x) serial_tx(x)
 
+#define delay(x) __delay_ms(x)
+
 #include<xc.h>
-#include"delay.h"
 #include"adc.h"
 #include"pwm.h"
 #include"serial.h"

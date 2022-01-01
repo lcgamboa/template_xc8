@@ -4,7 +4,7 @@
 
    ########################################################################
 
-   Copyright (c) : 2017  Luis Claudio Gambôa Lopes
+   Copyright (c) : 2015-2017  Luis Claudio Gambôa Lopes
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -23,4 +23,46 @@
    For e-mail suggestions :  lcgamboa@yahoo.com
    ######################################################################## */
 
-void delay(unsigned int ms);
+#include <xc.h>
+#include "keyboard.h"
+#include "config.h"
+
+const unsigned char linha[3]= {TL1,TL2,TL3};
+
+unsigned char keyPress(unsigned int timeout)
+{
+  unsigned int to=0;
+  char i;
+  unsigned char ret=0;
+  unsigned char tmpPB=PORTB;
+  unsigned char tmpTB=TRISB;
+  unsigned char tmpPD=PORTD;
+  unsigned char tmpTD=TRISD;
+
+  TRISB&=0xF8;
+  TRISD|=0x0F; 
+  while(((to < timeout)||(!timeout))&&(!ret))  
+  {
+    for(i=0;i<3;i++)
+    {
+      PORTB|=~linha[i];
+      if(!TC1){delay(20);if(!TC1){while(!TC1);ret= 1+i;break;}};
+      if(!TC2){delay(20);if(!TC2){while(!TC2);ret= 4+i;break;}};
+      if(!TC3){delay(20);if(!TC3){while(!TC3);ret= 7+i;break;}};
+      if(!TC4){delay(20);if(!TC4){while(!TC4);ret= 10+i;break;}};
+      PORTB &=linha[i];
+    };
+    delay(5);
+    to+=5;
+  }
+  
+  if(!ret)ret=255;
+  if(ret == 11)ret=0;
+  TRISB=tmpTB; 
+  PORTB=tmpPB;
+  TRISD=tmpTD;
+  PORTD=tmpPD;  
+  return ret;
+}
+
+

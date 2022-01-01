@@ -4,7 +4,7 @@
 
    ########################################################################
 
-   Copyright (c) : 2015-2017  Luis Claudio Gambôa Lopes
+   Copyright (c) : 2011  Luis Claudio GambÃ´a Lopes
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -23,39 +23,13 @@
    For e-mail suggestions :  lcgamboa@yahoo.com
    ######################################################################## */
 
-#include <xc.h>
-#include "teclado.h"
-#include "delay.h"
+#include<xc.h>
+#include"lcd.h"
 
-const static unsigned char linha[4]= {TL1,TL2,TL3};
+void lcd4_init(void);
+void lcd4_cmd(unsigned char val); 
+void lcd4_dat(unsigned char val);
+void lcd4_str(const char* str);
+void lcd4_custom(char num, const char d1,const char d2,const char d3,const char d4,const char d5,const char d6,const char d7,const char d8);
 
-unsigned char tc_tecla(unsigned int timeout)
-{
-  unsigned int to=0;
-  char i;
-  unsigned char ret=0;
-  unsigned char tmp=PORTB;
-
-
-  while(((to < timeout)||(!timeout))&&(!ret))  
-  {
-    for(i=0;i<3;i++)
-    {
-      PORTB|=~linha[i];
-      if(!TC1){delay(20);if(!TC1){while(!TC1);ret= 1+i;break;}};
-      if(!TC2){delay(20);if(!TC2){while(!TC2);ret= 4+i;break;}};
-      if(!TC3){delay(20);if(!TC3){while(!TC3);ret= 7+i;break;}};
-      if(!TC4){delay(20);if(!TC4){while(!TC4);ret= 10+i;break;}};
-      PORTB &=linha[i];
-    };
-    delay(5);
-    to+=5;
-  }
-  
-  if(!ret)ret=255;
-  if(ret == 11)ret=0;
-  PORTB=tmp;
-  return ret;
-}
-
-
+        

@@ -25,7 +25,7 @@
 
 #include <xc.h>
 #include "lcd.h"
-#include "delay.h"
+#include "config.h"
 
 void lcd_wr(unsigned char val)
 {
@@ -37,9 +37,9 @@ void lcd_cmd(unsigned char val)
 	LENA=1;
         lcd_wr(val);
         LDAT=0;
-        delay(3);
+        __delay_us(100);
         LENA=0;
-        delay(3);
+        delay(2);
 	LENA=1;
 }
  
@@ -48,14 +48,18 @@ void lcd_dat(unsigned char val)
 	LENA=1;
         lcd_wr(val);
         LDAT=1;
-        delay(3);
+        __delay_us(100);
         LENA=0;
-        delay(3);
+        __delay_us(100);
 	LENA=1;
 }
 
 void lcd_init(void)
 {
+    TPORT = 0x00;
+    TLENA = 0;
+    TLDAT = 0;
+    
 	LENA=0;
 	LDAT=0;
 	delay(20);

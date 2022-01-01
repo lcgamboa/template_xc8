@@ -29,3 +29,6 @@
   void PWM1_Set_Duty(unsigned char); 
   void PWM1_Stop(void);
 
+  void PWM2_Init(unsigned int);
+  void PWM2_Start(void);
+  void PWM2_Set_Duty(unsigned char); 

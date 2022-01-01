@@ -26,7 +26,8 @@
 extern volatile char date[10];  /*dd/mm/aa*/
 extern volatile char time[10];  /*hh:mm:ss*/
 
-void rtc_w(void);
+void rtc_w(const unsigned char day,const unsigned char mth,const unsigned char year,const unsigned char dow,
+           const unsigned char hr, const unsigned char min, const unsigned char sec);
 
 void rtc_r(void);
 

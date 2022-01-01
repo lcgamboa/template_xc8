@@ -15,7 +15,47 @@
             <sourceRootList/>
             <confList>
                 <confElem>
-                    <name>default</name>
+                    <name>18F4550</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>18F452</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>18F4620</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>18F4520</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>18F45K50</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>16F877A</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>16F777</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>16F1939</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>16F887</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>16F1789</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>18F47K40</name>
                     <type>2</type>
                 </confElem>
             </confList>

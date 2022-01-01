@@ -25,11 +25,21 @@
 #include <xc.h>
 #include"eeprom.h"
 
+#ifdef _18F47K40
+#define EECON1 NVMCON1
+#define EECON1bits NVMCON1bits
+#define EECON2 NVMCON2
+#define EEDATA NVMDAT
+#define EEADR NVMADR
+#endif
+
 #ifndef _16F777
 unsigned char eeprom_r(unsigned char addr)
 {
+#if defined(_18F4550)      
  EECON1bits.EEPGD=0;   
  EECON1bits.CFGS=0;
+#endif 
  EEADR= addr;
  EECON1bits.RD=1;
  return EEDATA;
@@ -38,8 +48,10 @@ unsigned char eeprom_r(unsigned char addr)
 
 void eeprom_w(unsigned char addr,unsigned char val)
 {
+#if defined(_18F4550)   
  EECON1bits.EEPGD=0;   
  EECON1bits.CFGS=0;
+#endif
  EEADR= addr;
  EEDATA=val;
  

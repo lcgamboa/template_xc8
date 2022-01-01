@@ -23,10 +23,10 @@
    For e-mail suggestions :  lcgamboa@yahoo.com
    ######################################################################## */
 
-#include "i2c.h"
+#include "sw_i2c.h"
 #include"eeprom_ext.h"
 
-unsigned char e2pext_r(unsigned int addr)
+unsigned char eepext_r(unsigned int addr)
 {
   unsigned char ret;
   unsigned char ah;
@@ -62,7 +62,7 @@ unsigned char e2pext_r(unsigned int addr)
 }
 
 
-void e2pext_w(unsigned int addr, unsigned char val)
+void eepext_w(unsigned int addr, unsigned char val)
 {
   unsigned int tmp;
   unsigned char ah;
@@ -91,5 +91,5 @@ void e2pext_w(unsigned int addr, unsigned char val)
 
     nt++;
   }
-  while((tmp != e2pext_r(addr))&&(nt < 10));
+  while((tmp != eepext_r(addr))&&(nt < 10));
 }

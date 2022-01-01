@@ -25,5 +25,5 @@
 
 #include <xc.h>
 
-unsigned char e2pext_r(unsigned int addr);
-void e2pext_w(unsigned int addr, unsigned char val);
+unsigned char eepext_r(unsigned int addr);
+void eepext_w(unsigned int addr, unsigned char val);

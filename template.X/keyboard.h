@@ -33,4 +33,4 @@
 #define TC3 PORTDbits.RD1
 #define TC4 PORTDbits.RD0
 
-unsigned char tc_tecla(unsigned int timeout); /*timeout=0 no time out*/ 
+unsigned char keyPress(unsigned int timeout); /*timeout=0 no time out*/ 

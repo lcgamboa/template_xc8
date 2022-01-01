@@ -25,7 +25,6 @@
 
 #include <xc.h>
 #include"serial.h"
-#include"delay.h"
 #include"config.h"
 
 #define B9600H ((_XTAL_FREQ/(16l*9600))-1)
@@ -84,12 +83,21 @@ unsigned char serial_rx(unsigned int timeout)
       RCSTAbits.CREN=1;
   }
 
+#if defined(_18F47K40)  
+  while(((to < timeout)||(!timeout))&&(!PIR3bits.RC1IF))
+#else
   while(((to < timeout)||(!timeout))&&(!PIR1bits.RCIF))
+#endif      
   {
     delay(1);
     to++; 
   }
+
+#if defined(_18F47K40)  
+  if(PIR3bits.RC1IF)
+#else
   if(PIR1bits.RCIF)
+#endif      
     return RCREG;
   else
     return 0xA5;
@@ -109,18 +117,30 @@ char*  serial_rx_str(char * buff, unsigned int size, unsigned int timeout)
   size--;
   for(i=0 ; i< size; )
   {
+#if defined(_18F47K40)       
+    while(((to < timeout)||(!timeout))&&(!PIR3bits.RC1IF))
+#else
     while(((to < timeout)||(!timeout))&&(!PIR1bits.RCIF))
+#endif        
     {
       delay(1);
       to+=1; 
     }
-    if(PIR1bits.RCIF)
+#if defined(_18F47K40)     
+    if(PIR3bits.RC1IF)
+#else
+    if(PIR1bits.RCIF)        
+#endif        
     {
       do
       {
         buff[i]= RCREG;
         i++;
+#if defined(_18F47K40)          
+      }while((PIR3bits.RC1IF)&&(i < size));
+#else
       }while((PIR1bits.RCIF)&&(i < size));
+#endif      
     }
     else
     {
@@ -147,7 +167,11 @@ char*  serial_rx_str_until(char * buff, unsigned int size, unsigned char term)
   i=0;
   do
   {
-    while(!PIR1bits.RCIF)
+#if defined(_18F47K40)       
+    while(!PIR3bits.RC1IF)
+#else
+    while(!PIR1bits.RCIF)    
+#endif        
     {
       delay(1);
     }
@@ -155,8 +179,11 @@ char*  serial_rx_str_until(char * buff, unsigned int size, unsigned char term)
     {
       buff[i]= RCREG;
       i++;
+#if defined(_18F47K40)       
+    }while((PIR3bits.RC1IF)&&(i < size)&&(buff[i-1]!=term));
+#else
     }while((PIR1bits.RCIF)&&(i < size)&&(buff[i-1]!=term));
-    
+#endif    
   }while((i < size)&&(buff[i-1]!=term));
   
   

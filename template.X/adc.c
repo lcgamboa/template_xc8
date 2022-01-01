@@ -25,7 +25,7 @@
 
 #include <xc.h>
 #include "adc.h"
-#include "delay.h"
+#include "config.h"
 
 
 void adc_init(void)
@@ -36,7 +36,9 @@ void adc_init(void)
 #else
   ADCON0=0x01;
   ADCON1=0x0C;
+#if !defined(_16F887) && !defined(_16F1939)  
   ADCON2=0x01;
+#endif
 #endif
 
 
@@ -45,8 +47,7 @@ void adc_init(void)
 unsigned int adc_sample(unsigned char canal)
 {
 
-
-#if defined(_18F4620) || defined(_18F4550) || defined(_18F4520)
+#if defined(_18F4620) || defined(_18F4550) || defined(_18F4520) || defined(_16F887)
     switch(canal)
     {
       case 0: 
@@ -74,18 +75,7 @@ unsigned int adc_sample(unsigned char canal)
     }   
 #endif
    
-    #asm 
-	NOP
-	NOP
-	NOP
-	NOP
-	NOP
-	NOP
-	NOP
-	NOP
-	NOP
-	NOP
-    #endasm
+    __delay_us(20);
 
     ADCON0bits.GO=1;
     while(ADCON0bits.GO == 1);

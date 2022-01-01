@@ -27,89 +27,108 @@
 
 #include"config.h"
 
+unsigned int mfac;
 
- void PWM1_Init(unsigned int f)
-  {
-   unsigned int temp;
- //PWM Period = [(PR2) + 1] * 4 * TOSC *(TMR2 Prescale Value)
- //PWM Duty Cycle = (CCPRXL:CCPXCON<5:4>) *TOSC * (TMR2 Prescale Value)
+void PWM1_Init(unsigned int f) {
+    unsigned int temp;
+    //PWM Period = [(PR2) + 1] * 4 * TOSC *(TMR2 Prescale Value)
+    //PWM Duty Cycle = (CCPRXL:CCPXCON<5:4>) *TOSC * (TMR2 Prescale Value)
 
+    //desliga PWM
+    CCP1CON = 0x00; //CCP disabled
+    //TRISCbits.TRISC2=1; //desliga saídas PWM
 
-   //desliga PWM
-     CCP1CON=0x00;//CCP disabled
-     //TRISCbits.TRISC2=1; //desliga saídas PWM
+    PORTCbits.RC2 = 0; //deliga saídas PWM
 
+    CCPR1L = 0; //ou 255?
 
-     PORTCbits.RC2=0; //deliga saídas PWM
+    //calculo TMR2
+    T2CONbits.TMR2ON = 0;
 
-     CCPR1L=0;//ou 255?
+    temp = (unsigned int)(_XTAL_FREQ / (f * 4l));
 
+    if (temp < 256) {
+        T2CONbits.T2CKPS = 0; //1
+        PR2 = temp;
+    } else if (temp / 4 < 256) {
+        T2CONbits.T2CKPS = 1; //4
+        PR2 = (temp + 2) / 4;
+    } else {
+        PR2 = (temp + 8) / 16;
+        T2CONbits.T2CKPS = 2; //16
+    }
 
-     //calculo TMR2
-
-      T2CONbits.TMR2ON=0;
-             
-     temp=_XTAL_FREQ/(f*4l);
-    
-     if (temp < 256)
-     {
-       T2CONbits.T2CKPS=0;  //1
-       PR2=temp;
-     }
-     else if(temp/4 < 256 )
-     {
-       T2CONbits.T2CKPS=1;  //4
-       PR2=(temp+2)/4;
-     }
-     else
-     {
-       PR2=(temp+8)/16;
-       T2CONbits.T2CKPS=2;  //16
-     }
-
-#ifndef _18F45K50
-     T2CONbits.TOUTPS=0x00;  //1-16
+#if !defined(_18F45K50) && !defined(_18F4520) && !defined(_16F1939) && !defined(_16F1789) && !defined(_18F47K40) 
+    T2CONbits.TOUTPS = 0x00; //1-16
 #else     
-     T2CONbits.T2OUTPS=0x00;
+    T2CONbits.T2OUTPS = 0x00;
 #endif
-             
-  }
+
+    
+    mfac=(unsigned int)(((PR2 << 2) | 0x03)/100);
+}
+
+void PWM2_Init(unsigned int f) {
+
+}
+
+void PWM1_Start(void) {
+
+    TRISCbits.TRISC2 = 0; //liga saídas PWM
+
+    CCP1CON = 0x0C;
+
+    T2CONbits.TMR2ON = 1;
+
+    //espera PWM normalizar
+
+#ifdef _18F47K40
+    PIR4bits.TMR2IF = 0;
+    while (PIR4bits.TMR2IF == 0);
+    PIR4bits.TMR2IF = 0;
+    while (PIR4bits.TMR2IF == 0);
+#else    
+    PIR1bits.TMR2IF = 0;
+    while (PIR1bits.TMR2IF == 0);
+    PIR1bits.TMR2IF = 0;
+    while (PIR1bits.TMR2IF == 0);
+#endif
+    
+}
+
+void PWM2_Start(void) {
+    
+    TRISCbits.TRISC1 = 0; //liga saídas PWM
+    CCP2CON = 0x0C;
+}
+
+void PWM1_Stop(void) {
+    //desliga PWM
+    CCP1CON = 0x00; //CCP disabled
+    //T2CONbits.TMR2ON = 0;
+}
+
+void PWM2_Stop(void) {
+    //desliga PWM
+    CCP2CON = 0x00; //CCP disabled
+    //T2CONbits.TMR2ON = 0;
+}
+
+void PWM1_Set_Duty(unsigned char d) {
+    unsigned int temp;
+
+    temp = (((unsigned long) (d))*mfac);
+
+    CCPR1L = (0x03FC & temp) >> 2;
+    //CCP1CON = ((0x0003 & temp) << 4) | 0x0C;
+}
+
+void PWM2_Set_Duty(unsigned char d) {
+    unsigned int temp;
+    temp = (((unsigned long) (d))*mfac);
+
+    CCPR2L = (0x03FC & temp) >> 2;
+    //CCP2CON = ((0x0003 & temp) << 4) | 0x0C;
+}
 
 
-  void PWM1_Start(void)
-  {
-
-      TRISCbits.TRISC2=0; //liga saídas PWM
-
-      CCP1CON=0x0C; 
-
-      T2CONbits.TMR2ON=1;
- 
-      //espera PWM normalizar
-
-      PIR1bits.TMR2IF=0;
-      while(PIR1bits.TMR2IF == 0);
-      PIR1bits.TMR2IF=0;
-      while(PIR1bits.TMR2IF == 0);
-  }
-
-  void PWM1_Stop(void)
-  {
-     //desliga PWM
-     CCP1CON=0x00;//CCP disabled
-
-      T2CONbits.TMR2ON=0;
-  }
-
-
-  void PWM1_Set_Duty(unsigned char d)
-  {
-      unsigned int temp;
-      
-      temp=(((unsigned long)(d))*((PR2<<2)|0x03))/255;
-
-      CCPR1L= (0x03FC&temp)>>2;
-      CCP1CON=((0x0003&temp)<<4)|0x0C;
-  }
-
-  

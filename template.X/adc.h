@@ -27,3 +27,6 @@
 void adc_init(void);
 
 unsigned int adc_sample(unsigned char canal);
+
+#define ADC_Read adc_sample
+#define ADC_Init adc_init

@@ -24,7 +24,7 @@
    ######################################################################## */
 
 #include"rtc.h"
-#include"i2c.h"
+#include"sw_i2c.h"
 
 volatile char date[10];
 volatile char time[10];
@@ -86,5 +86,52 @@ void rtc_r(void)
 
   i2c_stop();
 
+}
+
+unsigned char bin2bcd(const unsigned char binary_value)
+{
+unsigned char temp;
+unsigned char retval;
+
+temp = binary_value;
+retval = 0;
+
+while(1)
+{
+// Get the tens digit by doing multiple subtraction
+// of 10 from the binary value.
+  if(temp >= 10)
+  {
+   temp -= 10;
+   retval += 0x10;
+  }
+  else // Get the ones digit by adding the remainder.
+  {
+   retval += temp;
+   break;
+  }
+}
+
+return(retval);
+}
+
+void rtc_w(const unsigned char day,const unsigned char mth,const unsigned char year,const unsigned char dow,
+           const unsigned char hr, const unsigned char min, const unsigned char sec)
+{
+unsigned char sec_ = sec & 0x7F;
+unsigned char hr_ = hr & 0x3F;
+
+i2c_start();
+i2c_wb(0xD0); // I2C write address
+i2c_wb(0x00); // Start at REG 0 - Seconds
+i2c_wb(bin2bcd(sec_)); // REG 0
+i2c_wb(bin2bcd(min)); // REG 1
+i2c_wb(bin2bcd(hr_));  // REG 2
+i2c_wb(bin2bcd(dow)); // REG 3
+i2c_wb(bin2bcd(day)); // REG 4
+i2c_wb(bin2bcd(mth)); // REG 5
+i2c_wb(bin2bcd(year));// REG 6
+i2c_wb(0x80); // REG 7 - Disable squarewave output pin
+i2c_stop();
 }
 

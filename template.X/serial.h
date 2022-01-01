@@ -27,6 +27,6 @@
 void serial_init();//default 9600
 void serial_tx(unsigned char val);
 void serial_tx_str(const char* val);
-unsigned char serial_rx(unsigned int timeout);  /*timeout=0 no time out*/ 
+unsigned char serial_rx(unsigned int timeout);  /*timeout=0 no time out => return 0xA5 on timeout*/ 
 char*  serial_rx_str(char * buff, unsigned int size, unsigned int timeout);  /*timeout=0 no time out*/ 
 char*  serial_rx_str_until(char * buff, unsigned int size, unsigned char term);   

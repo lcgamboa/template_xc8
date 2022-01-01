@@ -23,11 +23,11 @@
    For e-mail suggestions :  lcgamboa@yahoo.com
    ######################################################################## */
 
-#ifndef _18F4550
-#include "i2c.h"
+#if !defined(_18F4550) && !defined(_18F45K50)
+#include "sw_i2c.h"
  
 
-void delay(void)
+static void delay(void)
 {
   #asm
      NOP

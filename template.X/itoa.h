@@ -23,4 +23,6 @@
    For e-mail suggestions :  lcgamboa@yahoo.com
    ######################################################################## */
 
-char * itoa(unsigned int val, char* str );
+char * utoa(unsigned int val, char* str );
+
+char * itoa( int val, char* str );

@@ -26,8 +26,11 @@
 
 #define LENA  PORTEbits.RE1
 #define LDAT  PORTEbits.RE2
-#define LPORT PORTD
+#define TLENA  TRISEbits.TRISE1
+#define TLDAT  TRISEbits.TRISE2
 
+#define LPORT PORTD
+#define TPORT TRISD
 
 #define L_ON	0x0F
 #define L_OFF	0x08
