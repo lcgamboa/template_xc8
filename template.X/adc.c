@@ -47,7 +47,7 @@ void adc_init(void)
 unsigned int adc_sample(unsigned char canal)
 {
 
-#if defined(_18F4620) || defined(_18F4550) || defined(_18F4520) || defined(_16F887)
+#if defined(_18F4620) || defined(_18F4550) || defined(_18F4520) || defined(_16F887) || defined(_16F1789)
     switch(canal)
     {
       case 0: 
@@ -80,5 +80,5 @@ unsigned int adc_sample(unsigned char canal)
     ADCON0bits.GO=1;
     while(ADCON0bits.GO == 1);
 
-   return ((((unsigned int)ADRESH)<<2)|(ADRESL>>6));
+   return ((((unsigned int)ADRESH)<<2)|(((unsigned int)ADRESL)>>6));
 }

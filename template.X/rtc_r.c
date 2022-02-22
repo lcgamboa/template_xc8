@@ -32,12 +32,12 @@ volatile char time[10];
 
 unsigned char getd(unsigned char nn)
 {
- return ((nn & 0xF0)>>4)+0x30;
+ return (unsigned char)(((nn & 0xF0)>>4)+0x30);
 }
 
 unsigned char getu(unsigned char nn)
 {
-  return (nn  & 0x0F)+0x30;
+  return (unsigned char)((nn  & 0x0F)+0x30);
 }
 
 //--------------------- Reads time and date information from RTC (DS1307)
@@ -51,29 +51,29 @@ void rtc_r(void)
 
   i2c_start();
   i2c_wb(0xD1);
-  tmp= 0x7F & i2c_rb(1); //segundos
+  tmp= (unsigned char)(0x7F & i2c_rb(1)); //segundos
   time[5]=':';
   time[6]=getd(tmp);
   time[7]=getu(tmp);
   time[8]=0;
 
-  tmp= 0x7F & i2c_rb(1); //minutos
+  tmp= (unsigned char)(0x7F & i2c_rb(1)); //minutos
   time[2]=':';
   time[3]=getd(tmp);
   time[4]=getu(tmp);
 
-  tmp= 0x3F & i2c_rb(1); //horas
+  tmp= (unsigned char)(0x3F & i2c_rb(1)); //horas
   time[0]=getd(tmp);
   time[1]=getu(tmp);
 
   i2c_rb(1); //dia semana
 
-  tmp= 0x3F & i2c_rb(1); //dia
+  tmp= (unsigned char)(0x3F & i2c_rb(1)); //dia
   date[0]=getd(tmp);
   date[1]=getu(tmp);
 
 
-  tmp= 0x1F & i2c_rb(1); //mes
+  tmp= (unsigned char)(0x1F & i2c_rb(1)); //mes
   date[2]='/'; 
   date[3]=getd(tmp);
   date[4]=getu(tmp);

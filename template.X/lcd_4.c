@@ -28,11 +28,11 @@
 #include "config.h"
 
 void lcd4_wr(unsigned char val) {
-    LPORT = (0xF0 & val) | (0x0F & LPORT);
+    LPORT = (unsigned char)((0xF0 & val) | (0x0F & LPORT));
     LENA = 0;
     __delay_us(100);
     LENA = 1;
-    LPORT = ((0x0F & val) << 4) | (0x0F & LPORT);
+    LPORT = (unsigned char)(((0x0F & val) << 4) | (0x0F & LPORT));
 }
 
 void lcd4_cmd(unsigned char val) {
@@ -90,7 +90,7 @@ void lcd4_custom(char num, const char d1, const char d2, const char d3, const ch
     unsigned char i;
 
     if (num < 8) {
-        lcd4_cmd(0x40 + num * 8);
+        lcd4_cmd((unsigned char)(0x40 + num * 8));
         lcd4_dat(d1);
         lcd4_dat(d2);
         lcd4_dat(d3);

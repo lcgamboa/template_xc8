@@ -94,7 +94,7 @@ void lcd_custom(char num, const char d1,const char d2,const char d3,const char d
 
   if(num < 8)
   {
-    lcd_cmd(0x40+num*8);
+    lcd_cmd((unsigned char)(0x40+num*8));
     lcd_dat(d1);
     lcd_dat(d2);
     lcd_dat(d3);

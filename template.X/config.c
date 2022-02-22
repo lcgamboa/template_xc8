@@ -74,57 +74,57 @@ void main()
 
 unsigned char digitalRead(unsigned char pin)
 {
-    unsigned char val = 1<<(0x0F & pin);
+    unsigned char val = (unsigned char)(1<<(0x0F & pin));
     switch((pin & 0xF0)>>4)
     {
        case 0:
-         return (PORTA & val) == val;
+         return (unsigned char)((PORTA & val) == val);
        case 1:
-         return (PORTB & val) == val;  
+         return (unsigned char)((PORTB & val) == val);  
        case 2:
-         return (PORTC & val) == val;
+         return (unsigned char)((PORTC & val) == val);
         case 3:
-         return (PORTD & val) == val;  
+         return (unsigned char)((PORTD & val) == val);  
        case 4:
-         return (PORTE & val) == val;      
+         return (unsigned char)((PORTE & val) == val);      
     }
     return 0;
 }
 
 void pinMode(unsigned char pin, unsigned char value)
 {
-    unsigned char val = 1<<(0x0F & pin);
+    unsigned char val = (unsigned char)(1<<(0x0F & pin));
     switch((pin & 0xF0)>>4)
     {
        case 0:
          if(value)
              TRISA|=val;
          else
-             TRISA&=~val;
+             TRISA&=(unsigned char)(~val);
          break;
        case 1:
          if(value)
              TRISB|=val;
          else
-             TRISB&=~val;
+             TRISB&=(unsigned char)(~val);
          break;
        case 2:
          if(value)
              TRISC|=val;
          else
-             TRISC&=~val;
+             TRISC&=(unsigned char)(~val);
          break;
        case 3:
          if(value)
              TRISD|=val;
          else
-             TRISD&=~val;
+             TRISD&=(unsigned char)(~val);
          break;
        case 4:
          if(value)
              TRISE|=val;
          else
-             TRISE&=~val;
+             TRISE&=(unsigned char)(~val);
          break;
     }
 }
@@ -132,38 +132,38 @@ void pinMode(unsigned char pin, unsigned char value)
 
 void digitalWrite(unsigned char pin, unsigned char value)
 {
-    unsigned char val = 1<<(0x0F & pin);
+    unsigned char val = (unsigned char)(1<<(0x0F & pin));
     switch((pin & 0xF0)>>4)
     {
        case 0:
          if(value)
              PORTA|=val;
          else
-             PORTA&=~val;
+             PORTA&=(unsigned char)(~val);
          break;
        case 1:
          if(value)
              PORTB|=val;
          else
-             PORTB&=~val;
+             PORTB&=(unsigned char)(~val);
          break;
        case 2:
          if(value)
              PORTC|=val;
          else
-             PORTC&=~val;
+             PORTC&=(unsigned char)(~val);
          break;
        case 3:
          if(value)
              PORTD|=val;
          else
-             PORTD&=~val;
+             PORTD&=(unsigned char)(~val);
          break;
        case 4:
          if(value)
              PORTE|=val;
          else
-             PORTE&=~val;
+             PORTE&=(unsigned char)(~val);
          break;
     }
 }

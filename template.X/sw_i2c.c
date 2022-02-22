@@ -74,7 +74,7 @@ void i2c_wb(unsigned char val)
   delay();
   for(i=0;i<8;i++)
   {
-    IDAT=((val>>(7-i))& 0x01);
+    IDAT=(unsigned char)(((val>>(7-i))& 0x01));
     ICLK=1;
     delay();
     ICLK=0;
@@ -104,7 +104,7 @@ unsigned char i2c_rb(unsigned char ack)
   {
     ICLK=1;
     delay();
-    ret|=(IDAT<<(7-i));
+    ret|=(unsigned char)((IDAT<<(7-i)));
     ICLK=0;
     delay();
   }

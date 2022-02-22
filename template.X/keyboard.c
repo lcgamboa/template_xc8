@@ -45,11 +45,11 @@ unsigned char keyPress(unsigned int timeout)
   {
     for(i=0;i<3;i++)
     {
-      PORTB|=~linha[i];
-      if(!TC1){delay(20);if(!TC1){while(!TC1);ret= 1+i;break;}};
-      if(!TC2){delay(20);if(!TC2){while(!TC2);ret= 4+i;break;}};
-      if(!TC3){delay(20);if(!TC3){while(!TC3);ret= 7+i;break;}};
-      if(!TC4){delay(20);if(!TC4){while(!TC4);ret= 10+i;break;}};
+      PORTB|=(unsigned char)(~linha[i]);
+      if(!TC1){delay(20);if(!TC1){while(!TC1);ret= (unsigned char)(1+i);break;}};
+      if(!TC2){delay(20);if(!TC2){while(!TC2);ret= (unsigned char)(4+i);break;}};
+      if(!TC3){delay(20);if(!TC3){while(!TC3);ret= (unsigned char)(7+i);break;}};
+      if(!TC4){delay(20);if(!TC4){while(!TC4);ret= (unsigned char)(10+i);break;}};
       PORTB &=linha[i];
     };
     delay(5);
