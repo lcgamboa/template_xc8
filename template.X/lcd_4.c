@@ -56,7 +56,7 @@ void lcd4_dat(unsigned char val) {
 }
 
 void lcd4_init(void) {
-    TPORT |= 0x0F;
+    TPORT &= 0x0F;
     TLENA = 0;
     TLDAT = 0;
 
@@ -70,7 +70,7 @@ void lcd4_init(void) {
     lcd4_cmd(0x33);
     delay(1);
     lcd4_cmd(0x32); //configura
-    lcd4_cmd(L_CFG); //configura
+    lcd4_cmd(0x28); //configura
     lcd4_cmd(L_OFF);
     lcd4_cmd(L_ON); //liga
     lcd4_cmd(L_CLR); //limpa

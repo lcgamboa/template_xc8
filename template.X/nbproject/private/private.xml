@@ -7,14 +7,6 @@
         <group>
             <file>file:/tmp/template.X/main.c</file>
         </group>
-        <group name="terceira">
-            <file>file:/home/gamboa/ownCloud/projetos/templates/template.X/serial.c</file>
-            <file>file:/home/gamboa/ownCloud/projetos/templates/template.X/lcd_4.c</file>
-            <file>file:/home/gamboa/ownCloud/projetos/templates/template.X/sw_i2c.c</file>
-            <file>file:/home/gamboa/ownCloud/projetos/templates/template.X/lcd.c</file>
-            <file>file:/home/gamboa/ownCloud/projetos/templates/template.X/config.c</file>
-            <file>file:/home/gamboa/ownCloud/projetos/templates/template.X/rtc_r.c</file>
-            <file>file:/home/gamboa/ownCloud/projetos/templates/template.X/keyboard.c</file>
-        </group>
+        <group name="terceira"/>
     </open-files>
 </project-private>
