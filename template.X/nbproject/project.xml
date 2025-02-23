@@ -15,15 +15,15 @@
             <sourceRootList/>
             <confList>
                 <confElem>
+                    <name>PIC18F4550</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
                     <name>PIC18F4620</name>
                     <type>2</type>
                 </confElem>
                 <confElem>
                     <name>PIC18F4520</name>
-                    <type>2</type>
-                </confElem>
-                <confElem>
-                    <name>PIC18F4550</name>
                     <type>2</type>
                 </confElem>
             </confList>

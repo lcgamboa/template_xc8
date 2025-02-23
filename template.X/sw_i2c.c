@@ -51,8 +51,8 @@ void i2c_init(void)
 
 void i2c_start(void)
 {
+  IDAT=1;	
   ICLK=1;
-  IDAT=1;
   delay();
   IDAT=0;
   delay();
@@ -60,8 +60,8 @@ void i2c_start(void)
 
 void i2c_stop(void)
 {
+  IDAT=0;	
   ICLK=1;
-  IDAT=0;
   delay();
   IDAT=1;
   delay();

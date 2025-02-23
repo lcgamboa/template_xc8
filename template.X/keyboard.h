@@ -4,7 +4,7 @@
 
    ########################################################################
 
-   Copyright (c) : 2015-2107  Luis Claudio Gambôa Lopes
+   Copyright (c) : 2015-2024  Luis Claudio Gambôa Lopes
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -24,13 +24,13 @@
    ######################################################################## */
 
 
-#define TL1 0x01
-#define TL2 0x02
-#define TL3 0x04
+#define TC1 0x01
+#define TC2 0x02
+#define TC3 0x04
 
-#define TC1 PORTDbits.RD3
-#define TC2 PORTDbits.RD2
-#define TC3 PORTDbits.RD1
-#define TC4 PORTDbits.RD0
+#define TR1 PORTDbits.RD3
+#define TR2 PORTDbits.RD2
+#define TR3 PORTDbits.RD1
+#define TR4 PORTDbits.RD0
 
 unsigned char keyPress(unsigned int timeout); /*timeout=0 no time out*/ 

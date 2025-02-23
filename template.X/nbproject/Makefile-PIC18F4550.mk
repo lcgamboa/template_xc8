@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=serial.c rtc_r.c pwm.c adc.c config.c display7s.c eeprom.c eeprom_ext.c lcd.c itoa.c main.c keyboard.c lcd_4.c sw_i2c.c
+SOURCEFILES_QUOTED_IF_SPACED=serial.c rtc_r.c pwm.c adc.c config.c display7s.c eeprom.c eeprom_ext.c lcd.c itoa.c keyboard.c lcd_4.c sw_i2c.c main.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/serial.p1 ${OBJECTDIR}/rtc_r.p1 ${OBJECTDIR}/pwm.p1 ${OBJECTDIR}/adc.p1 ${OBJECTDIR}/config.p1 ${OBJECTDIR}/display7s.p1 ${OBJECTDIR}/eeprom.p1 ${OBJECTDIR}/eeprom_ext.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/itoa.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/keyboard.p1 ${OBJECTDIR}/lcd_4.p1 ${OBJECTDIR}/sw_i2c.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/serial.p1.d ${OBJECTDIR}/rtc_r.p1.d ${OBJECTDIR}/pwm.p1.d ${OBJECTDIR}/adc.p1.d ${OBJECTDIR}/config.p1.d ${OBJECTDIR}/display7s.p1.d ${OBJECTDIR}/eeprom.p1.d ${OBJECTDIR}/eeprom_ext.p1.d ${OBJECTDIR}/lcd.p1.d ${OBJECTDIR}/itoa.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/keyboard.p1.d ${OBJECTDIR}/lcd_4.p1.d ${OBJECTDIR}/sw_i2c.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/serial.p1 ${OBJECTDIR}/rtc_r.p1 ${OBJECTDIR}/pwm.p1 ${OBJECTDIR}/adc.p1 ${OBJECTDIR}/config.p1 ${OBJECTDIR}/display7s.p1 ${OBJECTDIR}/eeprom.p1 ${OBJECTDIR}/eeprom_ext.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/itoa.p1 ${OBJECTDIR}/keyboard.p1 ${OBJECTDIR}/lcd_4.p1 ${OBJECTDIR}/sw_i2c.p1 ${OBJECTDIR}/main.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/serial.p1.d ${OBJECTDIR}/rtc_r.p1.d ${OBJECTDIR}/pwm.p1.d ${OBJECTDIR}/adc.p1.d ${OBJECTDIR}/config.p1.d ${OBJECTDIR}/display7s.p1.d ${OBJECTDIR}/eeprom.p1.d ${OBJECTDIR}/eeprom_ext.p1.d ${OBJECTDIR}/lcd.p1.d ${OBJECTDIR}/itoa.p1.d ${OBJECTDIR}/keyboard.p1.d ${OBJECTDIR}/lcd_4.p1.d ${OBJECTDIR}/sw_i2c.p1.d ${OBJECTDIR}/main.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/serial.p1 ${OBJECTDIR}/rtc_r.p1 ${OBJECTDIR}/pwm.p1 ${OBJECTDIR}/adc.p1 ${OBJECTDIR}/config.p1 ${OBJECTDIR}/display7s.p1 ${OBJECTDIR}/eeprom.p1 ${OBJECTDIR}/eeprom_ext.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/itoa.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/keyboard.p1 ${OBJECTDIR}/lcd_4.p1 ${OBJECTDIR}/sw_i2c.p1
+OBJECTFILES=${OBJECTDIR}/serial.p1 ${OBJECTDIR}/rtc_r.p1 ${OBJECTDIR}/pwm.p1 ${OBJECTDIR}/adc.p1 ${OBJECTDIR}/config.p1 ${OBJECTDIR}/display7s.p1 ${OBJECTDIR}/eeprom.p1 ${OBJECTDIR}/eeprom_ext.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/itoa.p1 ${OBJECTDIR}/keyboard.p1 ${OBJECTDIR}/lcd_4.p1 ${OBJECTDIR}/sw_i2c.p1 ${OBJECTDIR}/main.p1
 
 # Source Files
-SOURCEFILES=serial.c rtc_r.c pwm.c adc.c config.c display7s.c eeprom.c eeprom_ext.c lcd.c itoa.c main.c keyboard.c lcd_4.c sw_i2c.c
+SOURCEFILES=serial.c rtc_r.c pwm.c adc.c config.c display7s.c eeprom.c eeprom_ext.c lcd.c itoa.c keyboard.c lcd_4.c sw_i2c.c main.c
 
 
 
@@ -174,14 +174,6 @@ ${OBJECTDIR}/itoa.p1: itoa.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/itoa.d ${OBJECTDIR}/itoa.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/itoa.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/main.p1.d 
-	@${RM} ${OBJECTDIR}/main.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fshort-double -fshort-float -memi=wordwrite -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"bibliotecas.X" -mwarn=-3 -Wa,-a -DXPRJ_PIC18F4550=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -mc90lib $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
-	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/keyboard.p1: keyboard.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/keyboard.p1.d 
@@ -205,6 +197,14 @@ ${OBJECTDIR}/sw_i2c.p1: sw_i2c.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fshort-double -fshort-float -memi=wordwrite -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"bibliotecas.X" -mwarn=-3 -Wa,-a -DXPRJ_PIC18F4550=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -mc90lib $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/sw_i2c.p1 sw_i2c.c 
 	@-${MV} ${OBJECTDIR}/sw_i2c.d ${OBJECTDIR}/sw_i2c.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/sw_i2c.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main.p1.d 
+	@${RM} ${OBJECTDIR}/main.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fshort-double -fshort-float -memi=wordwrite -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"bibliotecas.X" -mwarn=-3 -Wa,-a -DXPRJ_PIC18F4550=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -mc90lib $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
+	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/serial.p1: serial.c  nbproject/Makefile-${CND_CONF}.mk 
@@ -287,14 +287,6 @@ ${OBJECTDIR}/itoa.p1: itoa.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/itoa.d ${OBJECTDIR}/itoa.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/itoa.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/main.p1.d 
-	@${RM} ${OBJECTDIR}/main.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fshort-double -fshort-float -memi=wordwrite -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"bibliotecas.X" -mwarn=-3 -Wa,-a -DXPRJ_PIC18F4550=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -mc90lib $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
-	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/keyboard.p1: keyboard.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/keyboard.p1.d 
@@ -318,6 +310,14 @@ ${OBJECTDIR}/sw_i2c.p1: sw_i2c.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fshort-double -fshort-float -memi=wordwrite -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"bibliotecas.X" -mwarn=-3 -Wa,-a -DXPRJ_PIC18F4550=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -mc90lib $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/sw_i2c.p1 sw_i2c.c 
 	@-${MV} ${OBJECTDIR}/sw_i2c.d ${OBJECTDIR}/sw_i2c.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/sw_i2c.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main.p1.d 
+	@${RM} ${OBJECTDIR}/main.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fshort-double -fshort-float -memi=wordwrite -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"bibliotecas.X" -mwarn=-3 -Wa,-a -DXPRJ_PIC18F4550=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -mc90lib $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
+	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

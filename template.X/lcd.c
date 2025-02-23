@@ -56,9 +56,9 @@ void lcd_dat(unsigned char val)
 
 void lcd_init(void)
 {
-    TPORT = 0x00;
-    TLENA = 0;
-    TLDAT = 0;
+    	TPORT = 0x00;
+    	TLENA = 0;
+    	TLDAT = 0;
     
 	LENA=0;
 	LDAT=0;
@@ -73,7 +73,6 @@ void lcd_init(void)
 	lcd_cmd(L_OFF);
 	lcd_cmd(L_ON); //liga
 	lcd_cmd(L_CLR); //limpa
-	lcd_cmd(L_CFG); //configura
         lcd_cmd(L_L1);
 }
 
